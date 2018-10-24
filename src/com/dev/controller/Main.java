@@ -35,13 +35,14 @@ public class Main extends HttpServlet{
 			if(result) 
 				{
 						HttpSession session=req.getSession();
-						RequestDispatcher dispatcher=req.getRequestDispatcher("");
+						RequestDispatcher dispatcher=req.getRequestDispatcher("");// change as per ur required forward resource
 						dispatcher.forward(req,resp);
 		    	}
 			else {
 						++count;
 						cre.setCount(count);
-						cre.setStart(Instant.now());;
+						cre.setStart(Instant.now());
+						//System.out.println("failed for "+count);
 		     	 }
 		}
 		else 
@@ -51,12 +52,14 @@ public class Main extends HttpServlet{
 						long differ=Duration.between(start,stop).toMillis();
 						if(differ<10000)
 							{
-						RequestDispatcher dispatcher=req.getRequestDispatcher("");
+							//System.out.println("locked");
+						RequestDispatcher dispatcher=req.getRequestDispatcher("");// change as per ur required forward resource
 						dispatcher.forward(req,resp);
 							}
 						else {
-							RequestDispatcher dispatcher=req.getRequestDispatcher("");
+							RequestDispatcher dispatcher=req.getRequestDispatcher("");// change as per ur required forward resource
 							dispatcher.forward(req,resp);
+							//System.out.println("you can login  now");
 							}
 		}
 	}
