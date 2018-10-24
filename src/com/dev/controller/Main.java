@@ -15,11 +15,13 @@ import javax.servlet.http.HttpSession;
 import com.dev.model.beans.Credential;
 import com.dev.model.implemenation.Implimentation;
 import com.dev.model.implemenation.LoginDao;
+import com.dev.model.implemenation.Validation;
 
 @WebServlet("/loginServ")
 public class Main extends HttpServlet{
 	LoginDao ld=new Implimentation(); 
 	Credential cre=new Credential();
+	Validation valid=new Validation();
 	int count=cre.getCount();
 	
 	@Override
@@ -28,8 +30,10 @@ public class Main extends HttpServlet{
 		
 		String email=req.getParameter("email");
 		String password=req.getParameter("pass");
+		boolean validname=valid.isStringOnlyAlphabet(email);
+		boolean validpass=valid.passvalid(password);
 		
-		if(count<3) 
+		if(count<3 && validname && validpass) 
 		{
 			boolean result=ld.login(email,password);
 			if(result) 
@@ -50,7 +54,12 @@ public class Main extends HttpServlet{
 						Instant start=cre.getStart();
 						Instant stop=Instant.now();
 						long differ=Duration.between(start,stop).toMillis();
-						if(differ<10000)
+						if(!validname ||!validpass) {
+							RequestDispatcher dispatcher=req.getRequestDispatcher("");// change as per ur required forward resource
+							dispatcher.forward(req,resp);
+						}
+						
+						else if(differ<10000)
 							{
 							//System.out.println("locked");
 						RequestDispatcher dispatcher=req.getRequestDispatcher("");// change as per ur required forward resource
