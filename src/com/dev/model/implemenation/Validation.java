@@ -3,8 +3,9 @@ package com.dev.model.implemenation;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Validation 
+public class Validation implements ValidationDao
 {
+	@Override
 	public boolean isStringOnlyAlphabet(String str) 
     { 
       return   ((str != null) 
@@ -12,7 +13,7 @@ public class Validation
                 && (str.matches("^[a-zA-Z]*$")));
         }
      
-	
+	@Override
 	public boolean passvalid(String password) {
 		
 		

@@ -16,12 +16,13 @@ import com.dev.model.beans.Credential;
 import com.dev.model.implemenation.Implimentation;
 import com.dev.model.implemenation.LoginDao;
 import com.dev.model.implemenation.Validation;
+import com.dev.model.implemenation.ValidationDao;
 
 @WebServlet("/loginServ")
 public class Main extends HttpServlet{
 	LoginDao ld=new Implimentation(); 
 	Credential cre=new Credential();
-	Validation valid=new Validation();
+	ValidationDao valid=new Validation();
 	int count=cre.getCount();
 	
 	@Override
