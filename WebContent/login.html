@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script>
+function valid() {
+	var user=document.myform.uname.value;
+	var password=document.myform.pass.value;
+	var format = /[?=!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]$/;
+	if(!/^[a-zA-Z]+$/i.test(user)){
+		alert("username must have only alphabets");
+		return false;
+	}
+	else if (!password.match(format)) { 
+		alert("atleast one special character is required in password"); 
+		return false;
+	} 
+	else{
+		return true;
+	}
+}
+
+
+</script>
+</head>
+<body>
+<form name="myform" action="#" onsubmit="return valid()">
+<table>
+<tr>
+<td>username:</td>
+<td><input type="text" name="uname" required ></td>
+</tr>
+<tr>
+<td>password:</td>
+<td><input type="password" name="pass" required></td>
+</tr>
+<tr><td><input type="submit" name="submit" value="login"></td></tr>
+</table>
+</form>
+
+</body>
+</html>

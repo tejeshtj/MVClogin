@@ -29,7 +29,7 @@ public class Main extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		
-		String email=req.getParameter("email");
+		String email=req.getParameter("uname");
 		String password=req.getParameter("pass");
 		boolean validname=valid.isStringOnlyAlphabet(email);
 		boolean validpass=valid.passvalid(password);
@@ -43,7 +43,7 @@ public class Main extends HttpServlet{
 						RequestDispatcher dispatcher=req.getRequestDispatcher("");// change as per ur required forward resource
 						dispatcher.forward(req,resp);
 		    	}
-			else {
+		    else {
 						++count;
 						cre.setCount(count);
 						cre.setStart(Instant.now());
