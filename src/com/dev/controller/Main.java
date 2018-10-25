@@ -26,11 +26,11 @@ public class Main extends HttpServlet{
 	int count=cre.getCount();
 	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		
-		String email=req.getParameter("uname");
-		String password=req.getParameter("pass");
+		String email=req.getParameter("name");
+		String password=req.getParameter("password");
 		boolean validname=valid.isStringOnlyAlphabet(email);
 		boolean validpass=valid.passvalid(password);
 		
