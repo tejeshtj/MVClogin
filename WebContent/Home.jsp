@@ -1,5 +1,6 @@
 
 <%@page import="com.dev.model.beans.Person"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -17,10 +18,10 @@ out.print(p);
 <jsp:useBean id="person"
  class="com.dev.model.beans.Person" 
  scope="request">
- <%-- <jsp:setProperty property="id" value="0" name="person"/> 
+  <jsp:setProperty property="id" value="0" name="person"/> 
  <jsp:setProperty property="name" value="unk" name="person"/>
  <jsp:setProperty property="email" value="unk" name="person"/>
- <jsp:setProperty property="address" value="unk" name="person"/> --%>
+ <jsp:setProperty property="address" value="unk" name="person"/>
  </jsp:useBean>
  <%=person %>
 <h2>name is:<jsp:getProperty property="name" name="person"/></h2>

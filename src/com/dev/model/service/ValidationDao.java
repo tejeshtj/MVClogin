@@ -1,4 +1,4 @@
-package com.dev.model.implemenation;
+package com.dev.model.service;
 
 public interface ValidationDao {
 	

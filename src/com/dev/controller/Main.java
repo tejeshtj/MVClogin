@@ -12,17 +12,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.dev.model.Dao.Implimentation;
+import com.dev.model.Dao.LoginDao;
+import com.dev.model.service.Validation;
+import com.dev.model.service.ValidationDao;
 import com.dev.model.beans.Credential;
-import com.dev.model.implemenation.Implimentation;
-import com.dev.model.implemenation.LoginDao;
-import com.dev.model.implemenation.Validation;
-import com.dev.model.implemenation.ValidationDao;
+import com.dev.model.service.RetryLogin;
+
+import com.dev.model.service.LoginValidator;
 
 @WebServlet("/loginServ")
 public class Main extends HttpServlet{
 	LoginDao ld=new Implimentation(); 
 	Credential cre=new Credential();
 	ValidationDao valid=new Validation();
+	LoginValidator lv=new LoginValidator();
+	RetryLogin rl=new RetryLogin();
+	
 	int count=cre.getCount();
 	
 	@Override
@@ -41,20 +47,20 @@ public class Main extends HttpServlet{
 				{
 						HttpSession session=req.getSession();
 						RequestDispatcher dispatcher=req.getRequestDispatcher("");// change as per ur required forward resource
+						
 						dispatcher.forward(req,resp);
+						session.setAttribute("user",email);
 		    	}
 		    else {
-						++count;
-						cre.setCount(count);
-						cre.setStart(Instant.now());
+						
+						lv.countntime(count);
 						//System.out.println("failed for "+count);
 		     	 }
 		}
 		else 
 		{
-						Instant start=cre.getStart();
-						Instant stop=Instant.now();
-						long differ=Duration.between(start,stop).toMillis();
+						
+						long differ=rl.timeDifference();
 						if(!validname ||!validpass) {
 							RequestDispatcher dispatcher=req.getRequestDispatcher("");// change as per ur required forward resource
 							dispatcher.forward(req,resp);

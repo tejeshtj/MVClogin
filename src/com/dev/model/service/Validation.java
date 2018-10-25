@@ -1,4 +1,4 @@
-package com.dev.model.implemenation;
+package com.dev.model.service;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
