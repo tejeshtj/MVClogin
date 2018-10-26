@@ -46,7 +46,7 @@ public class Main extends HttpServlet{
 			if(result) 
 				{
 						HttpSession session=req.getSession();
-						RequestDispatcher dispatcher=req.getRequestDispatcher("");// change as per ur required forward resource
+						RequestDispatcher dispatcher=req.getRequestDispatcher("login.jsp");// change as per ur required forward resource
 						
 						dispatcher.forward(req,resp);
 						session.setAttribute("user",email);
@@ -55,6 +55,9 @@ public class Main extends HttpServlet{
 						cre.setCount(++count);
 						rl.countntime();
 						System.out.println("failed for "+count);
+						RequestDispatcher dispatcher=req.getRequestDispatcher("fail.jsp");// change as per ur required forward resource
+						
+						dispatcher.forward(req,resp);
 		     	 }
 		}
 		else 
@@ -62,18 +65,18 @@ public class Main extends HttpServlet{
 						
 						long differ=rl.timeDifference();
 						if(!validname ||!validpass) {
-							RequestDispatcher dispatcher=req.getRequestDispatcher("");// change as per ur required forward resource
+							RequestDispatcher dispatcher=req.getRequestDispatcher("fail.jsp");// change as per ur required forward resource
 							dispatcher.forward(req,resp);
 						}
 						
 						else if(differ<10000)
 							{
 							System.out.println("locked");
-						RequestDispatcher dispatcher=req.getRequestDispatcher("");// change as per ur required forward resource
+						RequestDispatcher dispatcher=req.getRequestDispatcher("lock.jsp");// change as per ur required forward resource
 						dispatcher.forward(req,resp);
 							}
 						else {
-							RequestDispatcher dispatcher=req.getRequestDispatcher("");// change as per ur required forward resource
+							RequestDispatcher dispatcher=req.getRequestDispatcher("login.html");// change as per ur required forward resource
 							dispatcher.forward(req,resp);
 							System.out.println("you can login  now");
 							}
