@@ -26,7 +26,7 @@ public class Main extends HttpServlet{
 	LoginDao ld=new Implimentation(); 
 	Credential cre=new Credential();
 	ValidationDao valid=new Validation();
-	LoginValidator lv=new LoginValidator();
+	
 	RetryLogin rl=new RetryLogin();
 	
 	int count=cre.getCount();
@@ -52,9 +52,9 @@ public class Main extends HttpServlet{
 						session.setAttribute("user",email);
 		    	}
 		    else {
-						
-						lv.countntime(count);
-						//System.out.println("failed for "+count);
+						cre.setCount(++count);
+						rl.countntime();
+						System.out.println("failed for "+count);
 		     	 }
 		}
 		else 
@@ -68,14 +68,14 @@ public class Main extends HttpServlet{
 						
 						else if(differ<10000)
 							{
-							//System.out.println("locked");
+							System.out.println("locked");
 						RequestDispatcher dispatcher=req.getRequestDispatcher("");// change as per ur required forward resource
 						dispatcher.forward(req,resp);
 							}
 						else {
 							RequestDispatcher dispatcher=req.getRequestDispatcher("");// change as per ur required forward resource
 							dispatcher.forward(req,resp);
-							//System.out.println("you can login  now");
+							System.out.println("you can login  now");
 							}
 		}
 	}

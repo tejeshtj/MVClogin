@@ -14,5 +14,14 @@ public class RetryLogin {
 	long differ=Duration.between(start,stop).toMillis();
 	return differ;
 	}
+public void countntime() {
+		
+		
+		
+		Instant time=Instant.now();
+		cred.setStart(time);
+		
+	}
+
 
 }
